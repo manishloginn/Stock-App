@@ -3,30 +3,12 @@ const Stock = require("../models/stockModel");
 const averageVwap = async (req, res) => {
     const { start_date, end_date, symbol } = req.query;
 
-    const query = {}
+    const result = await Stock.aggregate([
+        { $match: { date: { $gte: start_date, $lte: end_date }, ...(symbol && { symbol }) } },
+        { $group: { _id: null, average_vwap: { $avg: "$vwap" } } }
+    ]);
 
-    if (start_date && end_date) {
-        query.date = {
-            $gte: new Date(start_date),
-            $lte: new Date(end_date),
-        }
-    }
-
-    if (symbol) {
-        query.symbol = symbol
-    }
-
-    try {
-        const stocks = await Stock.find(query)
-        if (stocks.length === 0) {
-            return res.status(404).json({ message: 'No records found for the specified query.' });
-        }
-        const stocksVwap = stocks.reduce((sum, stock) => sum + stock.vwap, 0)
-        const averageVwap = stocksVwap / stocks.length
-        return res.status(200).json({ average_vwap: averageVwap });
-    } catch (error) {
-        res.status(500).json({ message: 'Internal server error.' });
-    }
+    res.json({ average_vwap: result[0]?.average_vwap || 0 });
 }
 
 module.exports = averageVwap

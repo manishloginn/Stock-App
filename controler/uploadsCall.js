@@ -73,7 +73,7 @@ const uploadsCall = async (req, res) => {
                 failedRecords.push({ row, errors: validationErrors });
             } else {
                 const stockData = new Stock({
-                    date: row['Date'],
+                    date: new Date(row['Date']).toISOString().split('T')[0],
                     symbol: row['Symbol'],
                     series: row['Series'],
                     prev_close: parseFloat(row['Prev Close']) || 0,
