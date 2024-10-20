@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "8d4a517c-7849-45c4-8fad-ad7fdd0ce484",
+		"name": "assignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35015966"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8090/uploads",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "postman-cloud:///1ef8e349-d074-4e40-9688-5f06308c7724"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8050/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8050",
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8050/api/average_vwap?symbol=ULTRACEMCO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8050/api/average_vwap?symbol=ULTRACEMCO",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8050",
+					"path": [
+						"api",
+						"average_vwap"
+					],
+					"query": [
+						{
+							"key": "symbol",
+							"value": "ULTRACEMCO"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8050/api/highest_volume?start_date=2021-01-01&end_date=2021-12-31",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8050/api/highest_volume?start_date=2021-01-01&end_date=2021-12-31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8050",
+					"path": [
+						"api",
+						"highest_volume"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2021-01-01"
+						},
+						{
+							"key": "end_date",
+							"value": "2021-12-31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8050/api/average_close?start_date=2021-01-01&end_date=2021-12-31",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8050/api/average_close?start_date=2021-01-01&end_date=2021-12-31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8050",
+					"path": [
+						"api",
+						"average_close"
+					],
+					"query": [
+						{
+							"key": "start_date",
+							"value": "2021-01-01"
+						},
+						{
+							"key": "end_date",
+							"value": "2021-12-31"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
